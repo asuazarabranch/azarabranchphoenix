@@ -842,7 +842,7 @@
 
 
   <script>
-    function submitHeroForm() {
+    async function submitHeroForm() {
       const fname = document.getElementById("h-fname");
       const lname = document.getElementById("h-lname");
       const email = document.getElementById("h-email");
@@ -858,10 +858,36 @@
 
       if (!valid) return;
 
-      // TODO: Replace this fetch URL with your Formspree or backend endpoint
-      // For now shows success state — wiring to text list covered in setup steps
-      document.getElementById("hero-signup").style.display = "none";
-      document.getElementById("hero-success").style.display = "flex";
+      const btn = document.querySelector(".signup-btn");
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+
+      try {
+        const response = await fetch("https://formspree.io/f/xjgdjbvd", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            firstName: fname.value.trim(),
+            lastName: lname.value.trim(),
+            email: email.value.trim(),
+            phone: phone.value.trim(),
+            source: "Homepage Signup"
+          })
+        });
+
+        if (response.ok) {
+          document.getElementById("hero-signup").style.display = "none";
+          document.getElementById("hero-success").style.display = "flex";
+        } else {
+          btn.disabled = false;
+          btn.textContent = "Join the Text List →";
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = "Join the Text List →";
+        alert("Something went wrong. Please try again.");
+      }
     }
 
     ["h-fname","h-lname","h-email","h-phone"].forEach(id => {

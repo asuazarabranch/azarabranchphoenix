@@ -277,7 +277,7 @@
   </footer>
 
   <script>
-    function submitVolForm() {
+    async function submitVolForm() {
       const fname = document.getElementById('v-fname');
       const lname = document.getElementById('v-lname');
       const email = document.getElementById('v-email');
@@ -291,9 +291,37 @@
       if (!phone.value.trim() || phone.value.replace(/\D/g,'').length < 10) { phone.classList.add('error'); valid = false; }
       if (!valid) return;
 
-      document.querySelector('.signup-form').style.display = 'none';
-      document.querySelector('.signup-label').style.display = 'none';
-      document.getElementById('vol-success').classList.add('show');
+      const btn = document.querySelector('.btn-submit');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      try {
+        const response = await fetch("https://formspree.io/f/xjgdjbvd", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            firstName: fname.value.trim(),
+            lastName: lname.value.trim(),
+            email: email.value.trim(),
+            phone: phone.value.trim(),
+            source: "Volunteer Page Signup"
+          })
+        });
+
+        if (response.ok) {
+          document.querySelector('.signup-form').style.display = 'none';
+          document.querySelector('.signup-label').style.display = 'none';
+          document.getElementById('vol-success').classList.add('show');
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Join the Text List →';
+          alert('Something went wrong. Please try again.');
+        }
+      } catch(err) {
+        btn.disabled = false;
+        btn.textContent = 'Join the Text List →';
+        alert('Something went wrong. Please try again.');
+      }
     }
 
     ['v-fname','v-lname','v-email','v-phone'].forEach(id => {
