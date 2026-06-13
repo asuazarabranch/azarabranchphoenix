@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>St. Vincent De Paul — Azara Branch ASU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --green: #4a7c59; --green-dark: #35593f; --green-light: #d6e8da; --cream: #f9f6f0; --charcoal: #1e2419; --mid: #5a6b5d; --white: #ffffff; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.6; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: rgba(249,246,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(74,124,89,0.12); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo svg { width: 36px; height: 36px; }
+    .nav-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--mid); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta { background: var(--green); color: var(--white) !important; padding: 8px 20px; border-radius: 100px; }
+    .nav-cta:hover { background: var(--green-dark) !important; }
+    .back-bar { padding-top: 68px; background: var(--white); border-bottom: 1px solid rgba(74,124,89,0.1); }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; padding: 14px 80px; font-size: 0.82rem; font-weight: 600; color: var(--mid); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .back-link:hover { color: var(--green); }
+    .back-link svg { width: 14px; height: 14px; stroke: currentColor; }
+    .event-hero { width: 100%; height: 520px; overflow: hidden; position: relative; }
+    .event-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .event-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(30,36,25,0.75) 0%, rgba(30,36,25,0.05) 60%); }
+    .event-hero-text { position: absolute; bottom: 48px; left: 80px; right: 80px; color: var(--white); }
+    .event-tag { display: inline-block; background: var(--green); color: var(--white); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 14px; border-radius: 100px; margin-bottom: 14px; }
+    .event-hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 600; line-height: 1.05; margin-bottom: 12px; }
+    .event-hero-meta { font-size: 0.85rem; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .event-hero-meta span { display: flex; align-items: center; gap: 6px; }
+    .event-hero-meta svg { width: 14px; height: 14px; stroke: currentColor; }
+    .event-content { display: grid; grid-template-columns: 1fr 340px; gap: 64px; max-width: 1200px; margin: 0 auto; padding: 64px 80px; }
+    .event-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--charcoal); margin-bottom: 20px; }
+    .event-body p { font-size: 0.97rem; color: var(--mid); line-height: 1.85; margin-bottom: 20px; }
+    .event-sidebar { display: flex; flex-direction: column; gap: 24px; }
+    .sidebar-card { background: var(--white); border: 1px solid rgba(74,124,89,0.12); border-radius: 12px; padding: 24px; }
+    .sidebar-card h4 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .sidebar-stat { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(74,124,89,0.08); }
+    .sidebar-stat:last-child { border-bottom: none; }
+    .sidebar-stat-icon { width: 32px; height: 32px; background: var(--green-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sidebar-stat-icon svg { width: 14px; height: 14px; stroke: var(--green); }
+    .sidebar-stat-label { color: var(--mid); font-size: 0.8rem; }
+    .sidebar-stat-value { color: var(--charcoal); font-weight: 600; font-size: 0.88rem; }
+    .btn-primary { display: block; background: var(--green); color: var(--white); padding: 13px 24px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem; text-align: center; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .gallery-section { background: var(--white); padding: 72px 80px; }
+    .gallery-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
+    .gallery-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--charcoal); margin-bottom: 40px; }
+    .gallery-grid { display: grid; grid-template-columns: 1fr; grid-auto-rows: 500px; gap: 12px; max-width: 800px; }
+    .g-item { overflow: hidden; border-radius: 10px; cursor: pointer; position: relative; }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .g-item:hover img { transform: scale(1.03); }
+    .g-item-overlay { position: absolute; inset: 0; background: rgba(30,36,25,0); transition: background 0.3s; display: flex; align-items: center; justify-content: center; }
+    .g-item:hover .g-item-overlay { background: rgba(30,36,25,0.2); }
+    .g-item-overlay svg { opacity: 0; transition: opacity 0.3s; width: 32px; height: 32px; stroke: white; }
+    .g-item:hover .g-item-overlay svg { opacity: 1; }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 300; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lb-img { max-width: 90vw; max-height: 88vh; border-radius: 8px; object-fit: contain; display: block; }
+    .lb-close { position: fixed; top: 24px; right: 32px; background: rgba(255,255,255,0.12); border: none; color: white; width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .lb-close:hover { background: rgba(255,255,255,0.25); }
+    .more-events { background: var(--green-dark); padding: 64px 80px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .more-events h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--white); }
+    .more-events p { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 8px; }
+    .btn-white { background: var(--white); color: var(--green-dark); padding: 13px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.88rem; white-space: nowrap; flex-shrink: 0; }
+    .btn-white:hover { background: var(--green-light); }
+    footer { background: var(--charcoal); color: rgba(255,255,255,0.5); padding: 48px 80px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+    .footer-brand p { font-size: 0.82rem; margin-top: 10px; line-height: 1.7; }
+    .footer-col h4 { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; font-size: 0.78rem; text-align: center; }
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; } .back-link { padding: 14px 24px; }
+      .event-hero { height: 360px; } .event-hero-text { left: 24px; right: 24px; bottom: 32px; }
+      .event-content { grid-template-columns: 1fr; padding: 48px 24px; gap: 40px; }
+      .gallery-section { padding: 48px 24px; } .gallery-grid { grid-auto-rows: 320px; }
+      .more-events { flex-direction: column; align-items: flex-start; padding: 48px 24px; }
+      footer { grid-template-columns: 1fr; padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <svg viewBox="0 0 36 36" fill="none"><rect x="1" y="1" width="34" height="34" rx="8" stroke="#4a7c59" stroke-width="2.5"/><line x1="18" y1="30" x2="18" y2="16" stroke="#4a7c59" stroke-width="2.5" stroke-linecap="round"/><path d="M18 16 Q24 8 18 5 Q12 8 18 16Z" fill="#4a7c59"/><path d="M18 21 Q11 18 10 12 Q16 13 18 21Z" fill="#4a7c59"/></svg>
+      <span class="nav-logo-text">Azara Branch</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Our Mission</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="https://sundevilcentral.eoss.asu.edu/ABP/club_signup" target="_blank">ASU Chapter</a></li>
+      <li><a href="volunteer.html" class="nav-cta">Volunteer</a></li>
+    </ul>
+  </nav>
+  <div class="back-bar">
+    <a class="back-link" href="events.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Events
+    </a>
+  </div>
+  <div class="event-hero">
+    <img src="event4-img1.jpg" alt="St. Vincent De Paul February 2026" />
+    <div class="event-hero-overlay"></div>
+    <div class="event-hero-text">
+      <span class="event-tag">Food Service</span>
+      <h1 class="event-hero-title">St. Vincent De Paul</h1>
+      <div class="event-hero-meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>February 2026</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Phoenix, AZ</span>
+      </div>
+    </div>
+  </div>
+  <div class="event-content">
+    <div class="event-body">
+      <h2>About This Event</h2>
+      <p>Thank you to all of the volunteers who came out to our food service event with the Society of St. Vincent de Paul! We had an amazing turnout today and together we were able to serve meals and support members of our community experiencing homelessness. If you are interested in participating in future events with us join us on sundevilcentral and GroupMe linked in bio.</p>
+    </div>
+    <div class="event-sidebar">
+      <div class="sidebar-card">
+        <h4>Event Details</h4>
+        <div class="sidebar-stat">
+          <div class="sidebar-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div><p class="sidebar-stat-label">Date</p><p class="sidebar-stat-value">February 2026</p></div>
+        </div>
+        <div class="sidebar-stat">
+          <div class="sidebar-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><p class="sidebar-stat-label">Location</p><p class="sidebar-stat-value">Phoenix, AZ</p></div>
+        </div>
+        <div class="sidebar-stat">
+          <div class="sidebar-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div><p class="sidebar-stat-label">Partner</p><p class="sidebar-stat-value">Society of St. Vincent de Paul</p></div>
+        </div>
+      </div>
+      <a href="volunteer.html" class="btn-primary">Volunteer Here &rarr;</a>
+    </div>
+  </div>
+  <section class="gallery-section">
+    <p class="gallery-eyebrow">From the Event</p>
+    <h2 class="gallery-title">Photo Gallery</h2>
+    <div class="gallery-grid">
+      <div class="g-item" onclick="openLb()">
+        <img src="event4-img1.jpg" alt="St. Vincent De Paul February 2026" />
+        <div class="g-item-overlay"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+      </div>
+    </div>
+  </section>
+  <div class="lightbox" id="lightbox" onclick="closeLb()">
+    <button class="lb-close" onclick="closeLb()">&#10005;</button>
+    <img class="lb-img" src="event4-img1.jpg" alt="St. Vincent De Paul" />
+  </div>
+  <div class="more-events">
+    <div><h2>See more events</h2><p>Check out everything Azara Branch has been up to since our founding.</p></div>
+    <a href="events.html" class="btn-white">All Events &rarr;</a>
+  </div>
+  <footer>
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html"><svg viewBox="0 0 36 36" fill="none" style="width:28px;height:28px;"><rect x="1" y="1" width="34" height="34" rx="8" stroke="white" stroke-width="2.5"/><line x1="18" y1="30" x2="18" y2="16" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M18 16 Q24 8 18 5 Q12 8 18 16Z" fill="white"/><path d="M18 21 Q11 18 10 12 Q16 13 18 21Z" fill="white"/></svg><span class="nav-logo-text" style="color:white;">Azara Branch</span></a>
+      <p>Arizona State University Chapter</p>
+    </div>
+    <div class="footer-col"><h4>Pages</h4><a href="index.html">Home</a><a href="about.html">Our Mission</a><a href="events.html">Events</a><a href="volunteer.html">Volunteer</a></div>
+    <div class="footer-col"><h4>Connect</h4>
+      <a href="https://www.instagram.com/azarabranchphoenix/" target="_blank">Instagram @azarabranchphoenix</a>
+      <a href="mailto:phoenixazarabranch@gmail.com">Email Us</a>
+      <a href="https://sundevilcentral.eoss.asu.edu/ABP/club_signup" target="_blank">Join ASU Chapter</a>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Azara Branch at Arizona State University. All rights reserved.</div>
+  </footer>
+  <script>
+    function openLb() { document.getElementById('lightbox').classList.add('open'); }
+    function closeLb() { document.getElementById('lightbox').classList.remove('open'); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+  </script>
+</body>
+</html>

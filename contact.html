@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Azara Branch ASU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #4a7c59;
+      --green-dark:  #35593f;
+      --green-light: #d6e8da;
+      --cream:       #f9f6f0;
+      --charcoal:    #1e2419;
+      --mid:         #5a6b5d;
+      --white:       #ffffff;
+      --error:       #c0392b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: rgba(249,246,240,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(74,124,89,0.12);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo svg { width: 36px; height: 36px; }
+
+    .nav-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--mid);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--green); }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 100px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--green-dark) !important; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding-top: calc(68px + 72px);
+      padding-bottom: 72px;
+      padding-left: 80px;
+      padding-right: 80px;
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .page-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .page-title em {
+      font-style: italic;
+      color: var(--green-light);
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 480px;
+      line-height: 1.75;
+    }
+
+    /* ── CONTACT GRID ── */
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 0;
+      min-height: 600px;
+    }
+
+    /* Left panel — contact info */
+    .contact-info {
+      background: var(--green-dark);
+      padding: 72px 56px;
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .info-block-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 14px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-icon svg { width: 18px; height: 18px; stroke: rgba(255,255,255,0.8); }
+
+    .info-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      font-size: 0.95rem;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a.info-value:hover { color: var(--green-light); }
+
+    /* Social links */
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .social-link:last-child { border-bottom: none; }
+    .social-link:hover { color: var(--white); }
+
+    .social-link-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .social-link:hover .social-link-icon { background: rgba(255,255,255,0.18); }
+    .social-link-icon svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.8); }
+
+    /* Office hours */
+    .hours-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.7);
+    }
+
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row span:first-child { color: rgba(255,255,255,0.45); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* ── CONTACT FORM ── */
+    .contact-form-wrap {
+      background: var(--cream);
+      padding: 72px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 32px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-field.full { grid-column: 1 / -1; }
+
+    .form-field label {
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: var(--white);
+      border: 1.5px solid rgba(74,124,89,0.18);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.92rem;
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--green); }
+
+    .form-field input.error,
+    .form-field select.error,
+    .form-field textarea.error { border-color: var(--error); }
+
+    .field-error {
+      font-size: 0.74rem;
+      color: var(--error);
+      display: none;
+    }
+
+    .field-error.show { display: block; }
+
+    .form-field textarea { resize: vertical; min-height: 120px; }
+
+    .btn-submit {
+      grid-column: 1 / -1;
+      background: var(--green);
+      color: var(--white);
+      padding: 15px 32px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 4px;
+    }
+
+    .btn-submit:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* Success */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .success-msg.show { display: block; }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .success-icon svg { width: 28px; height: 28px; stroke: var(--green); }
+
+    .success-msg h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+
+    .success-msg p { font-size: 0.92rem; color: var(--mid); line-height: 1.75; }
+
+    /* ── INSTAGRAM STRIP ── */
+    .instagram-strip {
+      padding: 80px;
+      background: var(--white);
+      text-align: center;
+    }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .ig-handle {
+      font-size: 1rem;
+      color: var(--mid);
+      margin-bottom: 40px;
+    }
+
+    .ig-handle a {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .ig-handle a:hover { text-decoration: underline; }
+
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .ig-tile {
+      aspect-ratio: 1;
+      background: var(--green-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      color: var(--mid);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+      cursor: pointer;
+    }
+
+    .ig-tile:hover { opacity: 0.75; }
+    .ig-tile svg { width: 22px; height: 22px; opacity: 0.35; }
+
+    .btn-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: var(--white);
+      padding: 13px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-ig:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .btn-ig svg { width: 16px; height: 16px; stroke: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      padding: 48px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .footer-brand p { font-size: 0.82rem; margin-top: 10px; line-height: 1.7; }
+
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--white); }
+
+    .footer-bottom {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .page-header { padding: calc(68px + 48px) 32px 48px; }
+      .contact-section { grid-template-columns: 1fr; }
+      .contact-info { padding: 48px 32px; }
+      .contact-form-wrap { padding: 48px 32px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-field.full { grid-column: 1; }
+      .btn-submit { grid-column: 1; }
+      .instagram-strip { padding: 64px 32px; }
+      .ig-grid { grid-template-columns: repeat(3, 1fr); }
+      footer { grid-template-columns: 1fr; padding: 48px 32px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="34" height="34" rx="8" stroke="#4a7c59" stroke-width="2.5"/>
+        <line x1="18" y1="30" x2="18" y2="16" stroke="#4a7c59" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M18 16 Q24 8 18 5 Q12 8 18 16Z" fill="#4a7c59"/>
+        <path d="M18 21 Q11 18 10 12 Q16 13 18 21Z" fill="#4a7c59"/>
+      </svg>
+      <span class="nav-logo-text">Azara Branch</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="volunteer.html" class="nav-cta">Volunteer</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="page-eyebrow">Get In Touch</p>
+    <h1 class="page-title">Let's <em>connect.</em></h1>
+    <p class="page-subtitle">Have a question, want to partner with us, or just want to say hi? We'd love to hear from you.</p>
+  </div>
+
+  <!-- CONTACT SPLIT -->
+  <section class="contact-section">
+
+    <!-- Left: Info -->
+    <div class="contact-info">
+
+      <div>
+        <p class="info-block-title">Reach Us Directly</p>
+        <div class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <p class="info-label">Email</p>
+            <a class="info-value" href="mailto:Arsfoundation@azarabranch.org">Arsfoundation@azarabranch.org</a>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <p class="info-label">Location</p>
+            <span class="info-value">Arizona State University, Tempe, AZ</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="info-block-title">Follow Along</p>
+        <div class="social-links">
+          <a class="social-link" href="https://www.instagram.com/azarabranchphoenix/" target="_blank">
+            <div class="social-link-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.5" fill="white" stroke="none"/>
+              </svg>
+            </div>
+            @azarabranchphoenix
+          </a>
+          <a class="social-link" href="https://www.instagram.com/azarabranch/" target="_blank">
+            <div class="social-link-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.5" fill="white" stroke="none"/>
+              </svg>
+            </div>
+            @azarabranch
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="info-block-title">Response Times</p>
+        <div class="hours-grid">
+          <div class="hours-row"><span>General Inquiries</span><span>Within 48 hours</span></div>
+          <div class="hours-row"><span>Volunteer Requests</span><span>Within 24–48 hours</span></div>
+          <div class="hours-row"><span>Partnerships</span><span>Within 3–5 days</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right: Form -->
+    <div class="contact-form-wrap">
+      <div id="form-content">
+        <h2 class="form-title">Send us a message</h2>
+        <div class="form-grid">
+
+          <div class="form-field">
+            <label>First Name *</label>
+            <input type="text" id="fname" placeholder="Sun" />
+            <span class="field-error" id="fname-err">Please enter your first name.</span>
+          </div>
+
+          <div class="form-field">
+            <label>Last Name *</label>
+            <input type="text" id="lname" placeholder="Devil" />
+            <span class="field-error" id="lname-err">Please enter your last name.</span>
+          </div>
+
+          <div class="form-field full">
+            <label>Email Address *</label>
+            <input type="email" id="email" placeholder="you@asu.edu" />
+            <span class="field-error" id="email-err">Please enter a valid email.</span>
+          </div>
+
+          <div class="form-field full">
+            <label>Subject *</label>
+            <select id="subject">
+              <option value="">Select a topic</option>
+              <option>General Question</option>
+              <option>Volunteer Inquiry</option>
+              <option>Partnership / Collaboration</option>
+              <option>Media / Press</option>
+              <option>Donation</option>
+              <option>Other</option>
+            </select>
+            <span class="field-error" id="subject-err">Please select a subject.</span>
+          </div>
+
+          <div class="form-field full">
+            <label>Message *</label>
+            <textarea id="message" placeholder="Tell us what's on your mind..."></textarea>
+            <span class="field-error" id="message-err">Please enter a message.</span>
+          </div>
+
+          <button class="btn-submit" id="submit-btn" onclick="submitForm()">Send Message →</button>
+
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="success-msg" id="success-msg">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h3>Message received!</h3>
+        <p>Thanks for reaching out. We'll get back to you within 48 hours. In the meantime, follow us on Instagram for the latest updates. 🌿</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- INSTAGRAM STRIP -->
+  <section class="instagram-strip">
+    <p class="section-eyebrow">Stay in the loop</p>
+    <h2 class="section-title">Follow us on Instagram</h2>
+    <p class="ig-handle">See what we've been up to → <a href="https://www.instagram.com/azarabranchphoenix/" target="_blank">@azarabranchphoenix</a></p>
+    <div class="ig-grid">
+      <!-- Replace these with real IG photos or an embed -->
+      <div class="ig-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Photo
+      </div>
+      <div class="ig-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Photo
+      </div>
+      <div class="ig-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Photo
+      </div>
+      <div class="ig-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Photo
+      </div>
+      <div class="ig-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Photo
+      </div>
+    </div>
+    <a class="btn-ig" href="https://www.instagram.com/azarabranchphoenix/" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="white" stroke="none"/>
+      </svg>
+      View on Instagram
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;">
+          <rect x="1" y="1" width="34" height="34" rx="8" stroke="white" stroke-width="2.5"/>
+          <line x1="18" y1="30" x2="18" y2="16" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M18 16 Q24 8 18 5 Q12 8 18 16Z" fill="white"/>
+          <path d="M18 21 Q11 18 10 12 Q16 13 18 21Z" fill="white"/>
+        </svg>
+        <span class="nav-logo-text" style="color:white;">Azara Branch</span>
+      </a>
+      <p>ASU Chapter · Monthly Local Volunteering<br>Phoenix, Arizona · 501(c)3 Non-Profit</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="events.html">Events & Photos</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://www.instagram.com/azarabranchphoenix/" target="_blank">Instagram @azarabranchphoenix</a>
+      <a href="mailto:Arsfoundation@azarabranch.org">Arsfoundation@azarabranch.org</a>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Azara Branch at Arizona State University. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function submitForm() {
+      let valid = true;
+
+      const fields = [
+        { id: 'fname',   errId: 'fname-err',   check: v => v.trim().length > 0 },
+        { id: 'lname',   errId: 'lname-err',   check: v => v.trim().length > 0 },
+        { id: 'email',   errId: 'email-err',   check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+        { id: 'subject', errId: 'subject-err', check: v => v !== '' },
+        { id: 'message', errId: 'message-err', check: v => v.trim().length > 0 },
+      ];
+
+      fields.forEach(({ id, errId, check }) => {
+        const el = document.getElementById(id);
+        const err = document.getElementById(errId);
+        if (!check(el.value)) {
+          el.classList.add('error');
+          err.classList.add('show');
+          valid = false;
+        } else {
+          el.classList.remove('error');
+          err.classList.remove('show');
+        }
+      });
+
+      if (!valid) return;
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      setTimeout(() => {
+        document.getElementById('form-content').style.display = 'none';
+        document.getElementById('success-msg').classList.add('show');
+      }, 800);
+    }
+
+    ['fname','lname','email','subject','message'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', () => {
+        el.classList.remove('error');
+        document.getElementById(id + '-err').classList.remove('show');
+      });
+    });
+  </script>
+
+</body>
+</html>

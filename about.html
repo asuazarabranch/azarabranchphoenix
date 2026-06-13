@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Mission — Azara Branch ASU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #4a7c59; --green-dark: #35593f; --green-light: #d6e8da;
+      --cream: #f9f6f0; --charcoal: #1e2419; --mid: #5a6b5d; --white: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.6; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: rgba(249,246,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(74,124,89,0.12); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo svg { width: 36px; height: 36px; }
+    .nav-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--mid); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); }
+    .nav-cta { background: var(--green); color: var(--white) !important; padding: 8px 20px; border-radius: 100px; }
+    .nav-cta:hover { background: var(--green-dark) !important; }
+
+    /* ── STORY SPLIT ── */
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      padding-top: 68px;
+    }
+
+    .story-img {
+      position: relative;
+      overflow: hidden;
+      background: var(--green-light);
+      min-height: 500px;
+    }
+
+    .story-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Placeholder state */
+    .story-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--mid);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .story-img-placeholder svg { width: 40px; height: 40px; opacity: 0.35; }
+
+    .story-text {
+      padding: 80px 72px 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--cream);
+    }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+    }
+
+    .section-body {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.85;
+    }
+
+    /* ── TEAM ── */
+    .team {
+      padding: 96px 80px;
+      background: var(--white);
+    }
+
+    .team-header {
+      margin-bottom: 56px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .team-card { text-align: center; }
+
+    .team-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--green-light);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      color: var(--mid);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .team-photo svg { width: 28px; height: 28px; opacity: 0.35; }
+
+    .team-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .team-role {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* ── FOOTER ── */
+    footer { background: var(--charcoal); color: rgba(255,255,255,0.5); padding: 48px 80px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: start; }
+    .footer-brand p { font-size: 0.82rem; margin-top: 10px; line-height: 1.7; }
+    .footer-col h4 { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; font-size: 0.78rem; text-align: center; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .story { grid-template-columns: 1fr; min-height: auto; }
+      .story-img { min-height: 320px; }
+      .story-text { padding: 48px 32px; }
+      .team { padding: 64px 32px; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { grid-template-columns: 1fr; padding: 48px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <svg viewBox="0 0 36 36" fill="none">
+        <rect x="1" y="1" width="34" height="34" rx="8" stroke="#4a7c59" stroke-width="2.5"/>
+        <line x1="18" y1="30" x2="18" y2="16" stroke="#4a7c59" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M18 16 Q24 8 18 5 Q12 8 18 16Z" fill="#4a7c59"/>
+        <path d="M18 21 Q11 18 10 12 Q16 13 18 21Z" fill="#4a7c59"/>
+      </svg>
+      <span class="nav-logo-text">Azara Branch</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Our Mission</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="https://sundevilcentral.eoss.asu.edu/ABP/club_signup" target="_blank">ASU Chapter</a></li>
+      <li><a href="volunteer.html" class="nav-cta">Volunteer</a></li>
+    </ul>
+  </nav>
+
+  <!-- STORY SPLIT -->
+  <section class="story">
+    <div class="story-img">
+      <!-- Replace with: <img src="about-photo.jpg" alt="Azara Branch" /> -->
+      <div class="story-img-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        Your photo here
+      </div>
+    </div>
+    <div class="story-text">
+      <p class="section-eyebrow">Our Mission</p>
+      <h2 class="section-title">Community is Synonymous with Service</h2>
+      <p class="section-body" style="margin-bottom:20px;">
+        <strong>Mission Statement:</strong> Azara Branch is a registered 501(c)3 Non-Profit Organization that provides utilities for heat/homeless relief through providing utilities and supplies to the unsheltered Phoenix population of District 7 and beyond.
+      </p>
+      <p class="section-body">
+        We want to encourage students to provide aid for local homeless communities on-site. Volunteering on-site allows students to make a positive impact not just through providing physical goods, but also having direct &amp; meaningful conversations with the people they are helping.
+      </p>
+    </div>
+  </section>
+
+  <!-- MEET THE TEAM -->
+  <section class="team">
+    <div class="team-header">
+      <p class="section-eyebrow">The People Behind It</p>
+      <h2 class="section-title">Meet the Board</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="team-noah.jpg" alt="Noah Nasir" />
+        </div>
+        <p class="team-name">Noah Nasir</p>
+        <p class="team-role">President</p>
+        <p style="font-size:0.82rem;color:#5a6b5d;margin-top:8px;line-height:1.6;">Hello, my name is Noah Nasir, I am currently a Junior studying Supply Chain Management. I like to hike, work out &amp; thrift. My favorite Azara Branch moment was setting up for our Fall Clothing Drive.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="team-sophie.jpg" alt="Sophie Baniameri" />
+        </div>
+        <p class="team-name">Sophie Baniameri</p>
+        <p class="team-role">Vice President</p>
+        <p style="font-size:0.82rem;color:#5a6b5d;margin-top:8px;line-height:1.6;">Hi, I'm Sophie! I'm studying Finance. I enjoy Tennis, Mock Trial, and working out. My favorite Azara Branch moment was setting up for our Fall Clothing Drive.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="team-jerome.jpg" alt="Jerome Kau" />
+        </div>
+        <p class="team-name">Jerome Kau</p>
+        <p class="team-role">Marketing</p>
+        <p style="font-size:0.82rem;color:#5a6b5d;margin-top:8px;line-height:1.6;">Hey, I'm Jerome! Stay tuned for more info about me soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <a class="nav-logo" href="index.html">
+        <svg viewBox="0 0 36 36" fill="none" style="width:28px;height:28px;">
+          <rect x="1" y="1" width="34" height="34" rx="8" stroke="white" stroke-width="2.5"/>
+          <line x1="18" y1="30" x2="18" y2="16" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M18 16 Q24 8 18 5 Q12 8 18 16Z" fill="white"/>
+          <path d="M18 21 Q11 18 10 12 Q16 13 18 21Z" fill="white"/>
+        </svg>
+        <span class="nav-logo-text" style="color:white;">Azara Branch</span>
+      </a>
+      <p>Arizona State University Chapter</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">Our Mission</a>
+      <a href="events.html">Events</a>
+      <a href="volunteer.html">Volunteer</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://www.instagram.com/azarabranchphoenix/" target="_blank">Instagram @azarabranchphoenix</a>
+      <a href="mailto:phoenixazarabranch@gmail.com">Email Us</a>
+      <a href="https://sundevilcentral.eoss.asu.edu/ABP/club_signup" target="_blank">Join ASU Chapter</a>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Azara Branch at Arizona State University. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
