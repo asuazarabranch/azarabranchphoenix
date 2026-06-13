@@ -20,7 +20,8 @@
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo svg { width: 36px; height: 36px; }
     .nav-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--cream); flex-direction: column; gap: 0; border-bottom: 2px solid rgba(74,124,89,0.15); z-index: 99; padding: 8px 0; list-style: none; }
+    .nav-links.open { display: flex; }
     .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--mid); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--green); }
     .nav-cta { background: var(--green); color: var(--white) !important; padding: 8px 20px; border-radius: 100px; }
@@ -181,7 +182,7 @@
 
     /* ── MOBILE NAV ── */
     .hamburger {
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
@@ -204,34 +205,7 @@
 
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
-      .hamburger { display: flex; }
-      .nav-links {
-        display: none;
-        position: fixed;
-        top: 68px;
-        left: 0;
-        right: 0;
-        background: var(--cream);
-        flex-direction: column;
-        gap: 0;
-        border-bottom: 2px solid rgba(74,124,89,0.15);
-        z-index: 99;
-        padding: 8px 0;
-      }
-      .nav-links.open { display: flex; }
       .nav-links li { width: 100%; }
-      .nav-links a {
-        display: block;
-        padding: 14px 24px;
-        font-size: 0.9rem;
-        border-bottom: 1px solid rgba(74,124,89,0.08);
-      }
-      .nav-links .nav-cta {
-        margin: 12px 24px;
-        border-radius: 100px;
-        text-align: center;
-        padding: 12px 24px;
-      }
     }
   </style>
 </head>
