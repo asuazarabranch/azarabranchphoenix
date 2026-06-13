@@ -175,12 +175,68 @@
     .footer-col a:hover { color: var(--white); }
     .footer-bottom { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; font-size: 0.78rem; text-align: center; }
 
-    @media (max-width: 900px) {
-      nav { padding: 0 24px; }
-      .volunteer-wrap { grid-template-columns: 1fr; }
-      .event-info { padding: 48px 32px; }
-      .signup-wrap { padding: 48px 32px; }
-      footer { grid-template-columns: 1fr; padding: 48px 32px; }
+    @media (max-width: 768px) {
+      .volunteer-wrap { grid-template-columns: 1fr; min-height: auto; }
+      .event-info { padding: 40px 24px; }
+      .event-title { font-size: 1.8rem; }
+      .signup-wrap { padding: 40px 24px; }
+      .signup-row { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr; padding: 40px 24px; }
+    }
+
+    /* ── MOBILE NAV ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--charcoal);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 2px solid rgba(74,124,89,0.15);
+        z-index: 99;
+        padding: 8px 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        padding: 14px 24px;
+        font-size: 0.9rem;
+        border-bottom: 1px solid rgba(74,124,89,0.08);
+      }
+      .nav-links .nav-cta {
+        margin: 12px 24px;
+        border-radius: 100px;
+        text-align: center;
+        padding: 12px 24px;
+      }
     }
   </style>
 </head>
@@ -196,7 +252,7 @@
       </svg>
       <span class="nav-logo-text">Azara Branch</span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">Our Mission</a></li>
       <li><a href="events.html">Events</a></li>
@@ -327,6 +383,13 @@
     ['v-fname','v-lname','v-email','v-phone'].forEach(id => {
       document.getElementById(id).addEventListener('input', function() { this.classList.remove('error'); });
     });
+  </script>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('nav-links').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+    }
   </script>
 </body>
 </html>

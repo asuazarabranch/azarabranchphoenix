@@ -15,87 +15,223 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.6; }
 
+    /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: rgba(249,246,240,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(74,124,89,0.12); }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo svg { width: 36px; height: 36px; }
-    .nav-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); letter-spacing: 0.02em; }
+    .nav-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--green-dark); }
     .nav-links { display: flex; gap: 36px; list-style: none; }
     .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--mid); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--green); }
     .nav-cta { background: var(--green); color: var(--white) !important; padding: 8px 20px; border-radius: 100px; }
     .nav-cta:hover { background: var(--green-dark) !important; }
 
-    /* PAGE HEADER */
-    .page-header {
-      padding-top: calc(68px + 72px);
-      padding-bottom: 72px;
-      padding-left: 80px;
-      padding-right: 80px;
-      background: var(--green);
-      color: var(--white);
+    /* PAGE INTRO */
+    .page-intro {
+      padding-top: calc(68px + 48px);
+      padding-bottom: 12px;
+      padding-left: 24px;
+      padding-right: 24px;
+      text-align: center;
     }
-    .page-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
-    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 600; line-height: 1.05; margin-bottom: 16px; }
-    .page-title em { font-style: italic; color: var(--green-light); }
-    .page-subtitle { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 480px; line-height: 1.75; }
 
-    /* EVENTS SECTION */
-    .events-section { padding: 72px 80px; }
-
-    .section-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 600; line-height: 1.2; color: var(--charcoal); margin-bottom: 48px; }
-
-    .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-
-    .event-card {
-      background: var(--white);
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(74,124,89,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
+    .page-intro h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 6px;
     }
-    .event-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(74,124,89,0.13); }
 
-    .event-img {
-      height: 210px;
-      background: var(--green-light);
+    .page-intro p {
+      font-size: 0.88rem;
+      color: var(--mid);
+    }
+
+    /* INSTAGRAM GRID */
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      margin-top: 24px;
+    }
+
+    .ig-tile {
       position: relative;
+      aspect-ratio: 1;
       overflow: hidden;
+      cursor: pointer;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
     }
-    .event-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    .event-body { padding: 24px 24px 28px; }
-    .event-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-    .event-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--green); padding: 3px 10px; border-radius: 100px; }
-    .event-date { font-size: 0.75rem; color: var(--mid); }
-    .event-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; line-height: 1.25; }
-    .event-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.75; }
+    .ig-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
 
-    /* CTA */
-    .events-cta { background: var(--green-dark); color: var(--white); padding: 72px 80px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
-    .events-cta h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 600; line-height: 1.2; }
-    .events-cta p { font-size: 0.95rem; color: rgba(255,255,255,0.65); margin-top: 10px; max-width: 460px; }
-    .btn-white { background: var(--white); color: var(--green-dark); padding: 14px 32px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; white-space: nowrap; transition: background 0.2s, transform 0.15s; flex-shrink: 0; }
-    .btn-white:hover { background: var(--green-light); transform: translateY(-1px); }
+    .ig-tile:hover img { transform: scale(1.05); }
+
+    /* Hover overlay */
+    .ig-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(30,36,25,0);
+      transition: background 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .ig-tile:hover .ig-overlay { background: rgba(30,36,25,0.72); }
+
+    .ig-overlay-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .ig-overlay-date {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s 0.05s, transform 0.3s 0.05s;
+    }
+
+    .ig-tile:hover .ig-overlay-title,
+    .ig-tile:hover .ig-overlay-date {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Upcoming tile — no photo, green bg */
+    .ig-tile-upcoming {
+      background: var(--green);
+    }
+
+    .ig-tile-upcoming .upcoming-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 24px;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .upcoming-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .upcoming-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .upcoming-cta {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+      text-decoration: underline;
+    }
+
+    .ig-tile-upcoming:hover .upcoming-inner { opacity: 0.85; }
 
     /* FOOTER */
-    footer { background: var(--charcoal); color: rgba(255,255,255,0.5); padding: 48px 80px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: start; }
+    footer { background: var(--charcoal); color: rgba(255,255,255,0.5); padding: 48px 80px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-top: 0; }
     .footer-brand p { font-size: 0.82rem; margin-top: 10px; line-height: 1.7; }
     .footer-col h4 { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 14px; }
     .footer-col a { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
     .footer-col a:hover { color: var(--white); }
     .footer-bottom { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; font-size: 0.78rem; text-align: center; }
 
-    @media (max-width: 900px) {
-      nav { padding: 0 24px; }
-      .page-header { padding: calc(68px + 48px) 32px 48px; }
-      .events-section { padding: 48px 32px; }
-      .events-grid { grid-template-columns: 1fr; }
-      .events-cta { flex-direction: column; align-items: flex-start; padding: 48px 32px; }
-      footer { grid-template-columns: 1fr; padding: 48px 32px; }
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      .ig-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { grid-template-columns: 1fr; padding: 48px 24px; }
+    }
+
+    /* ── MOBILE NAV ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--charcoal);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 2px solid rgba(74,124,89,0.15);
+        z-index: 99;
+        padding: 8px 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        padding: 14px 24px;
+        font-size: 0.9rem;
+        border-bottom: 1px solid rgba(74,124,89,0.08);
+      }
+      .nav-links .nav-cta {
+        margin: 12px 24px;
+        border-radius: 100px;
+        text-align: center;
+        padding: 12px 24px;
+      }
     }
   </style>
 </head>
@@ -111,100 +247,79 @@
       </svg>
       <span class="nav-logo-text">Azara Branch</span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">Our Mission</a></li>
-      <li><a href="events.html">Events</a></li>
+      <li><a href="events.html" class="active">Events</a></li>
       <li><a href="https://sundevilcentral.eoss.asu.edu/ABP/club_signup" target="_blank">ASU Chapter</a></li>
       <li><a href="volunteer.html" class="nav-cta">Volunteer</a></li>
     </ul>
   </nav>
 
+  <div class="page-intro">
+    <h1>Events</h1>
+    <p>Every month we show up. Tap any event to see more.</p>
+  </div>
 
+  <div class="ig-grid">
 
-  <section class="events-section">
-<h2 class="section-title" style="margin-bottom:48px;">Events</h2>
-    <div class="events-grid">
+    <!-- Upcoming -->
+    <a class="ig-tile ig-tile-upcoming" href="volunteer.html">
+      <div class="upcoming-inner">
+        <span class="upcoming-label">Upcoming</span>
+        <span class="upcoming-title">September 2026 Clothing Drive</span>
+        <span class="upcoming-cta">Sign up →</span>
+      </div>
+    </a>
 
-      <!-- Upcoming Sep 2026 -->
-      <a class="event-card" href="volunteer.html">
-        <div class="event-img" style="background:var(--green);display:flex;align-items:center;justify-content:center;">
-          <span style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:white;text-align:center;padding:20px;">September 2026<br>Clothing Drive</span>
-        </div>
-        <div class="event-body">
-          <div class="event-meta"><span class="event-tag">Upcoming</span><span class="event-date">Sep 2026</span></div>
-          <h3 class="event-title">September 2026 Clothing Drive</h3>
-          <p class="event-desc">Our next monthly event — sign up to volunteer and join us in the community.</p>
-        </div>
-      </a>
+    <!-- Mar 2026 -->
+    <a class="ig-tile" href="event-stvincent-mar2026.html">
+      <img src="event5-img1.jpg" alt="St. Vincent De Paul March 2026" />
+      <div class="ig-overlay">
+        <span class="ig-overlay-title">St. Vincent De Paul</span>
+        <span class="ig-overlay-date">March 2026</span>
+      </div>
+    </a>
 
-      <!-- Mar 2026 -->
-      <a class="event-card" href="event-stvincent-mar2026.html">
-        <div class="event-img"><img src="event5-img1.jpg" alt="St. Vincent De Paul March 2026" /></div>
-        <div class="event-body">
-          <div class="event-meta"><span class="event-tag">Food Service</span><span class="event-date">Mar 2026</span></div>
-          <h3 class="event-title">St. Vincent De Paul</h3>
-          <p class="event-desc">Volunteers served meals and supported community members experiencing homelessness alongside the Society of St. Vincent de Paul.</p>
-        </div>
-      </a>
+    <!-- Feb 2026 -->
+    <a class="ig-tile" href="event-stvincent-feb2026.html">
+      <img src="event4-img1.jpg" alt="St. Vincent De Paul February 2026" />
+      <div class="ig-overlay">
+        <span class="ig-overlay-title">St. Vincent De Paul</span>
+        <span class="ig-overlay-date">February 2026</span>
+      </div>
+    </a>
 
-      <!-- Feb 2026 -->
-      <a class="event-card" href="event-stvincent-feb2026.html">
-        <div class="event-img"><img src="event4-img1.jpg" alt="St. Vincent De Paul February 2026" /></div>
-        <div class="event-body">
-          <div class="event-meta"><span class="event-tag">Food Service</span><span class="event-date">Feb 2026</span></div>
-          <h3 class="event-title">St. Vincent De Paul</h3>
-          <p class="event-desc">Volunteers served meals and supported members of the community experiencing homelessness in partnership with St. Vincent de Paul.</p>
-        </div>
-      </a>
+    <!-- Oct 2025 -->
+    <a class="ig-tile" href="event-clothing-drive-oct2025.html">
+      <img src="event3-img1.jpg" alt="Clothing Drive October 2025" />
+      <div class="ig-overlay">
+        <span class="ig-overlay-title">Clothing Drive</span>
+        <span class="ig-overlay-date">October 2025</span>
+      </div>
+    </a>
 
-      <!-- Most Recent past: Oct 2025 -->
-      <a class="event-card" href="event-clothing-drive-oct2025.html">
-        <div class="event-img">
-          <img src="event3-img1.jpg" alt="Clothing Drive" />
-        </div>
-        <div class="event-body">
-          <div class="event-meta">
-            <span class="event-tag">Clothing Drive</span>
-            <span class="event-date">Oct 2025</span>
-          </div>
-          <h3 class="event-title">Clothing Drive</h3>
-          <p class="event-desc">Azara Branch handed out over 35 pounds of clothing and connected with amazing individuals in the community.</p>
-        </div>
-      </a>
+    <!-- Feb 2025 -->
+    <a class="ig-tile" href="event-hot-chocolate-feb2025.html">
+      <img src="event2-img1.jpg" alt="Hot Chocolate Drive February 2025" />
+      <div class="ig-overlay">
+        <span class="ig-overlay-title">Hot Chocolate Drive</span>
+        <span class="ig-overlay-date">February 2025</span>
+      </div>
+    </a>
 
-      <!-- Feb 2025 -->
-      <a class="event-card" href="event-hot-chocolate-feb2025.html">
-        <div class="event-img">
-          <img src="event2-img1.jpg" alt="Hot Chocolate Drive" />
-        </div>
-        <div class="event-body">
-          <div class="event-meta">
-            <span class="event-tag">Community &amp; Hospitality</span>
-            <span class="event-date">Feb 2025</span>
-          </div>
-          <h3 class="event-title">Hot Chocolate Drive</h3>
-          <p class="event-desc">Volunteers stationed outside of The Zone &amp; provided hot chocolate and hospitality to the unsheltered community.</p>
-        </div>
-      </a>
+    <!-- Nov 2024 -->
+    <a class="ig-tile" href="event-heat-hygiene-nov2024.html">
+      <img src="event1-img2.jpg" alt="Heat & Hygiene Kit Drive November 2024" />
+      <div class="ig-overlay">
+        <span class="ig-overlay-title">Heat &amp; Hygiene Kit Drive</span>
+        <span class="ig-overlay-date">November 2024</span>
+      </div>
+    </a>
 
-      <!-- Oldest: Nov 2024 -->
-      <a class="event-card" href="event-heat-hygiene-nov2024.html">
-        <div class="event-img">
-          <img src="event1-img2.jpg" alt="Heat &amp; Hygiene Kit Drive" />
-        </div>
-        <div class="event-body">
-          <div class="event-meta">
-            <span class="event-tag">Heat Relief &amp; Hygiene</span>
-            <span class="event-date">Nov 2024</span>
-          </div>
-          <h3 class="event-title">Heat &amp; Hygiene Kit Drive</h3>
-          <p class="event-desc">Volunteers packaged &amp; distributed 200+ bags to the unsheltered community in Phoenix.</p>
-        </div>
-      </a>
+  </div>
 
-    </div>
-  </section><footer>
+  <footer>
     <div class="footer-brand">
       <a class="nav-logo" href="index.html">
         <svg viewBox="0 0 36 36" fill="none" style="width:28px;height:28px;">
@@ -223,7 +338,6 @@
       <a href="about.html">Our Mission</a>
       <a href="events.html">Events</a>
       <a href="volunteer.html">Volunteer</a>
-      <a href="contact.html">Contact</a>
     </div>
     <div class="footer-col">
       <h4>Connect</h4>
@@ -234,5 +348,12 @@
     <div class="footer-bottom">&copy; 2026 Azara Branch at Arizona State University. All rights reserved.</div>
   </footer>
 
+
+  <script>
+    function toggleNav() {
+      document.getElementById('nav-links').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
